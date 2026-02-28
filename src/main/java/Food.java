@@ -11,6 +11,11 @@ public class Food
         this.quantity = quantity;
         this.area = area;
     }
+
+    public Food() {
+            // Default constructor for JSON deserialization
+        }
+
     public String getName()
     {
         return name;

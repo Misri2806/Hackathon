@@ -59,4 +59,30 @@ public static List<Food> loadFoods(String filePath) {
 
     return foodsList;
 }
+
+public static void addFoods(String filePath, Food newFood) {
+    List<Food> foodsList = loadFoods(filePath);
+    foodsList.add(newFood);
+    saveFoods(filePath, foodsList);
+
 }
+
+public static void saveFoods(String filePath, List<Food> foodsList) {
+    try (java.io.FileWriter fw = new java.io.FileWriter(filePath, false)) {
+        // Write header
+        fw.write("name,quantity,area\n");
+        for (Food food : foodsList) {
+            String row = String.format("%s,%d,%s\n", food.getName(), food.getQuantity(), food.getArea());
+            fw.write(row);
+        }
+    } catch (IOException e) {
+        System.err.println("Could not write to file: " + e.getMessage());
+    }
+
+}
+
+public static void deleteFood(String filePath, int indexValue) {
+    List<Food> foodsList = loadFoods(filePath);
+    foodsList.remove(indexValue);
+    saveFoods(filePath, foodsList);
+}}
