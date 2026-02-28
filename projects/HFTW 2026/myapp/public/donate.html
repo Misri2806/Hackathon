@@ -1,13 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Greeting App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate – Foodwill</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Food Will</h1>
-    <form action="http://localhost:8080/donate" method="POST">
-        
-    </form>
-    
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="donate.html">Donate</a></li>
+                <li><a href="request.html">Request</a></li>
+                <li class="right"><a href="signup.html" class="signup-btn">Sign Up</a></li>
+            </ul>
+        </nav>
+        <h1>Foodwill</h1>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Donate Food</h2>
+                <p>Share your extra food with those in need. Fill out the form below to let us know what you'd like to donate.</p>
+                <form action="http://localhost:8080/donate" method="POST" style="margin-top:20px;">
+                    <label>Item description:</label>
+                    <input type="text" name="item" required>
+                    
+                    <label>Quantity:</label>
+                    <input type="number" name="quantity" min="1" required>
+                    
+                    <label>Pickup location:</label>
+                    <input type="text" name="location" required>
+                    
+                    <button class="button" type="submit"><span>Submit</span></button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        Foodwill - Connecting Communities Through Food
+    </footer>
 </body>
 </html>

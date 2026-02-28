@@ -220,4 +220,69 @@ main {
     margin: 0 auto;
     max-width: 150px;
     height: auto;
-} 
+}
+
+/* Form input styling */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+    padding: 12px 15px;
+    border: 2px solid var(--color4);
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    background-color: white;
+    color: var(--color3);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--color5);
+    box-shadow: 0 0 8px rgba(0, 161, 96, 0.3);
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder,
+textarea::placeholder {
+    color: #999;
+}
+
+label {
+    display: block;
+    margin: 15px 0 8px 0;
+    font-weight: 600;
+    color: var(--color1);
+    font-size: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: var(--color2);
+    color: var(--color3);
+}

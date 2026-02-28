@@ -1,47 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>FoodWill - Request</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request – Foodwill</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="donate.html">Donate</a></li>
+                <li><a href="request.html">Request</a></li>
+                <li class="right"><a href="signup.html" class="signup-btn">Sign Up</a></li>
+            </ul>
+        </nav>
+        <h1>Foodwill</h1>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Request Food</h2>
+                <p>If you need food assistance, please fill out the form below to find available donations in your area.</p>
+                <form style="margin-top:20px;">
+                    <label>Item you want:</label>
+                    <input id="item" type="text" required>
 
-<h2>Request Food</h2>
+                    <label>Location:</label>
+                    <select id="location" required>
+                        <option value="Chicago">Chicago Area</option>
+                        <option value="Houston">Houston Area</option>
+                    </select>
+                    
+                    <button class="button" type="submit"><span>Find Match</span></button>
+                </form>
+                <h3 id="result"></h3>
+            </div>
+        </section>
+    </main>
+    <footer>
+        Foodwill - Connecting Communities Through Food
+    </footer>
 
-<label>Item you want:</label><br>
-<input id="item" type="text"><br><br>
+    <script>
+    document.querySelector('form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const item = document.getElementById("item").value;
+        const location = document.getElementById("location").value;
 
-<label>Location:</label><br>
-<select id="location">
-    <option value="Chicago">Chicago Area</option>
-    <option value="Houston">Houston Area</option>
-</select>
+        const response = await fetch("http://localhost:8080/request", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ item, location })
+        });
 
-<br><br>
-<button onclick="sendRequest()">Find Match</button>
-
-<h3 id="result"></h3>
-
-<script>
-async function sendRequest() {
-
-    const item = document.getElementById("item").value;
-    const location = document.getElementById("location").value;
-
-    const response = await fetch("http://localhost:8080/request", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            item: item,
-            location: location
-        })
+        const result = await response.text();
+        document.getElementById("result").innerHTML = result;
     });
-
-    const result = await response.text();
-    document.getElementById("result").innerHTML = result;
-}
-</script>
-
+    </script>
 </body>
 </html>
