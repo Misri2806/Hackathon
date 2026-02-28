@@ -3,20 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login – Foodwill</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>Login</h2>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="donate.html">Donate</a></li>
+                <li><a href="request.html">Request</a></li>
+                <li class="right">
+                    <a href="login.html" class="signup-btn" style="margin-right:10px;">Log In</a>
+                    <a href="signup.html" class="signup-btn">Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+        <h1>Foodwill</h1>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Welcome Back</h2>
+                <p>Log in to your Foodwill account to manage your donations and requests.</p>
+                <form action="login" method="post" style="margin-top:20px;">
+                    <label>Username:</label>
+                    <input type="text" name="username" required>
 
-    <form action="login" method="post">
-        <label>Username:</label>
-        <input type="text" name="username" required><br><br>
+                    <label>Password:</label>
+                    <div class="password-container">
+                        <input type="password" name="password" class="password-input" required>
+                        <span class="toggle-password" onclick="togglePassword(this)">👁️</span>
+                    </div>
 
-        <label>Password:</label>
-        <input type="password" name="password" required><br><br>
+                    <button class="button" type="submit"><span>Login</span></button>
+                </form>
 
-        <button type="submit">Login</button>
+                <p style="margin-top:20px;">Don't have an account? <a href="signup.html">Sign up</a></p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        Foodwill - Connecting Communities Through Food
+    </footer>
 
-    </form>
+    <script>
+    function togglePassword(icon) {
+        const input = icon.previousElementSibling;
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.textContent = '🙈';
+        } else {
+            input.type = 'password';
+            icon.textContent = '👁️';
+        }
+    }
+    </script>
 </body>
 </html>

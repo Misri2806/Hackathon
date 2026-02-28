@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,10 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="donate.html">Donate</a></li>
                 <li><a href="request.html">Request</a></li>
-                <li class="right"><a href="signup.html" class="signup-btn">Sign Up</a></li>
+                <li id="guest-section" class="right" style="display: none;">
+                    <a href="login.html" class="signup-btn" style="margin-right:10px;">Log In</a>
+                    <a href="signup.html" class="signup-btn">Sign Up</a>
+                </li>
             </ul>
         </nav>
         <h1>Foodwill</h1>
@@ -30,9 +34,23 @@
                 </div>
             </div>
         </section>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const username = params.get("username");
+
+        if (username) {
+      
+            document.getElementById("user-section").style.display = "block";
+            document.getElementById("username").textContent = username;
+        
+            //document.getElementById("guest-section").style.display = "none";
+        } else {
+            document.getElementById("guest-section").style.display = "block";
+        }
+    </script>
     </main>
-    <footer style="text-align:center; padding:10px; background:var(--color2); color:var(--color3);">
-        &copy; 2026 Foodwill
+    <footer>
+        Foodwill - Connecting Communities Through Food
     </footer>
 </body>
 </html>
