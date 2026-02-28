@@ -214,50 +214,6 @@ main {
     flex: 1;
 }
 
-/* table styling for request page */
-#foods-table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto 20px auto;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    overflow: hidden;
-}
-#foods-table th,
-#foods-table td {
-    padding: 16px 20px;
-    text-align: left;
-    font-size: 18px;
-}
-#foods-table th {
-    background: var(--color5);
-    color: var(--color1);
-}
-#foods-table tr {
-    border-bottom: 1px solid var(--color2);
-}
-#foods-table tr:last-child {
-    border-bottom: none;
-}
-#foods-table tr:hover {
-    background: var(--color2);
-}
-.claim-btn {
-    background: var(--color4);
-    color: var(--color1);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    font-size: 16px;
-}
-.claim-btn:hover {
-    background: var(--color5);
-}
-
 /* logo centered at top */
 .logo {
     display: block;
@@ -275,10 +231,10 @@ select,
 textarea {
     padding: 12px 15px;
     border: 2px solid var(--color4);
-    border-radius: 16px;
+    border-radius: 8px;
     font-size: 16px;
     font-family: inherit;
-    background-color: var(--color1);
+    background-color: white;
     color: var(--color3);
     transition: all 0.3s ease;
     box-sizing: border-box;
