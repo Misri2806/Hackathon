@@ -34,20 +34,20 @@
                 </div>
             </div>
         </section>
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const username = params.get("username");
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            const username = params.get("username");
 
-        if (username) {
-      
-            document.getElementById("user-section").style.display = "block";
-            document.getElementById("username").textContent = username;
+            if (username) {
         
-            //document.getElementById("guest-section").style.display = "none";
-        } else {
-            document.getElementById("guest-section").style.display = "block";
-        }
-    </script>
+                document.getElementById("user-section").style.display = "block";
+                document.getElementById("username").textContent = username;
+            
+                //document.getElementById("guest-section").style.display = "none";
+            } else {
+                document.getElementById("guest-section").style.display = "block";
+            }
+        </script>
     </main>
     <footer>
         Foodwill - Connecting Communities Through Food

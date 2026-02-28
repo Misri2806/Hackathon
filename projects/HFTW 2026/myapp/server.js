@@ -45,7 +45,7 @@ app.post("/signup1", (req, res) => {
 
 app.post("/login", (req, res) => {
   const { username, password } = req.body;
-
+  
   fs.readFile("public/users.txt", "utf8", (err, data) => {
     let users = {};
     //console.log(err)
@@ -60,7 +60,8 @@ app.post("/login", (req, res) => {
     console.log(users)
     if (users[username] === password) {
       //res.send("Welcome, " + username);
-      res.redirect("index.html?username=${encodeURIComponent(username)}")
+      //document.cookie
+      res.redirect(`index.html?username=${encodeURIComponent(username)}`)
     } else {
       res.send("Invalid username or password");
     }
