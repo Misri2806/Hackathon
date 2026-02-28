@@ -1,0 +1,161 @@
+:root {
+    --color1: #EEF9F5;
+    --color2: #CDD6D2;
+    --color3: #191E1C;
+    --color4: #58D6A3;
+    --color5: #00A160;
+    --color6: #005030;
+}
+
+body {
+    background: var(--color3);
+    font-family: Calibri, Helvetica Neue, Arial, Helvetica, sans-serif, 'Times New Roman', Arial;
+    color: var(--color3);
+    padding: 0px;
+    margin: 0px;
+ }
+
+ header {
+    background: var(--color1);
+    padding: 20px;
+    color:var(--color5);
+ }
+
+ h1 {
+    font-size: 50px;
+    margin: 0px;
+    padding: 0px;
+ }
+
+section {
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    background: var(--color1);
+    color: var(--color3);
+    font-weight: bold;
+    font-size: 15px;
+}
+            
+.button {
+     background: var(--color5);
+    border-radius: 10px;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+    font-weight: bold;
+    padding: 30px 20px;
+}
+
+.button:hover {
+    background: var(--color4);
+ }
+
+ .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    color: var(--color6);
+ }
+
+.button span:after {
+    content: '»';
+    position: absolute;
+     opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+    color: var(--color5);
+ }
+
+.button:hover span {
+    padding-right: 25px;
+    color: var(--color5);
+ }
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+ }
+
+ .button-link {
+    display: inline-block;
+ background: var(--color5);
+    border-radius: 10px;
+    border: none;
+    font-size: 20px; 
+   font-weight: bold;
+    color: var(--color6);
+    padding: 30px 20px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+    text-decoration: none;
+    position: relative;
+    font-size: 25px;
+}
+
+ .button-link:hover {
+    background: var(--color4);
+    color: var(--color5);
+ }
+
+.button-link span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+    color: inherit;
+ }
+
+  .button-link span:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+    color: var(--color5);
+}
+
+.button-link:hover span {
+    padding-right: 25px;
+}
+
+.button-link:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+    display: inline-block;
+    margin: 5px;
+    padding: 0px;
+}
+
+li2 {
+    display: block;
+     margin: 5px;
+     padding: 0px;
+     text-align: right;
+}
+
+   a {
+    text-decoration: none;
+    color: var(--color5);
+     font-weight: bold;
+     font-size: 20px;
+    transition-duration: 0.25s;
+
+ }
+
+ a:hover {
+    color: var(--color4);
+    }
