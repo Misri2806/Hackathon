@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FoodWill - Request</title>
+</head>
+<body>
+
+<h2>Request Food</h2>
+
+<label>Item you want:</label><br>
+<input id="item" type="text"><br><br>
+
+<label>Location:</label><br>
+<select id="location">
+    <option value="Chicago">Chicago Area</option>
+    <option value="Houston">Houston Area</option>
+</select>
+
+<br><br>
+<button onclick="sendRequest()">Find Match</button>
+
+<h3 id="result"></h3>
+
+<script>
+async function sendRequest() {
+
+    const item = document.getElementById("item").value;
+    const location = document.getElementById("location").value;
+
+    const response = await fetch("http://localhost:8080/request", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            item: item,
+            location: location
+        })
+    });
+
+    const result = await response.text();
+    document.getElementById("result").innerHTML = result;
+}
+</script>
+
+</body>
+</html>
