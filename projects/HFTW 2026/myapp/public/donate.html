@@ -27,7 +27,7 @@
             <div class="hero-content">
                 <h2>Donate Food</h2>
                 <p>Share your extra food with those in need. Fill out the form below to let us know what you'd like to donate.</p>
-                <form style="margin-top:20px;">
+                <!-- <form style="margin-top:20px;"> -->
                     <label>Item description:</label>
                     <input id="description" type="text" name="item" required>
                     
@@ -36,9 +36,9 @@
                     
                     <label>Pickup location:</label>
                     <input id="pickup" type="text" name="location" required>
-                    
+                    <br>
                     <button onClick="addFoods()" class="button"><span>Submit</span></button>
-                </form>
+                <!-- </form> -->
             </div>
         </section>
         <script>
@@ -54,6 +54,44 @@
             } else {
                 document.getElementById("guest-section").style.display = "block";
             }
+
+            function addFoods()
+            {
+                console.log("addfoods was called")
+                let description = document.getElementById("description").value; 
+                let quantity = document.getElementById("quantity").value;
+                let area = document.getElementById("pickup").value;
+
+                const url = "http://192.168.178.73:7000/addFood";
+                const data = {
+                    name:description,
+                    quantity:quantity,
+                    area:area
+                };
+                console.log("post");
+
+                fetch(url, {
+                method: 'POST', // Specify the HTTP method
+                headers: {
+                    'Content-Type': 'application/json' // Tell the server we're sending JSON
+                },
+                body: JSON.stringify(data) // Convert the JS object into a JSON string
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json(); // Parse the JSON response from the server
+                })
+                .then(result => {
+                    console.log('Success:', result);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+
+
         </script>
     </main>
     <footer>

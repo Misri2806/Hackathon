@@ -1,4 +1,5 @@
 console.log("foods.js loaded");
+/*
 document.addEventListener("DOMContentLoaded", () => {
   fetch("http://192.168.178.73:7000/foods")
     .then(response => {
@@ -25,7 +26,7 @@ function renderFoods(foods) {
     list.appendChild(li);
   });
 }
-
+*/ 
 function addFoods()
 {
     let description = document.getElementById("description").value; 

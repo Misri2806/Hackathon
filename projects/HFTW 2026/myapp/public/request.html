@@ -25,6 +25,8 @@
     <main>
         <section class="hero">
             <div class="hero-content">
+                <tbody id="foods-list"></tbody>
+                
                 <h2>Request Food</h2>
                 <p>If you need food assistance, please fill out the form below to find available donations in your area.</p>
                 <form style="margin-top:20px;">
@@ -66,6 +68,39 @@
         const result = await response.text();
         document.getElementById("result").innerHTML = result;
     });
+    async function getFoods() {
+      const response = await fetch("http://192.168.178.73:7000/foods");
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch foods");
+      }
+
+      return response.json();
+    }
+
+    function renderFoods(foods) {
+      const tbody = document.getElementById("foods-list");
+
+    foods.forEach(food => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${food.name}</td>
+        <td>${food.quantity}</td>
+        <td>${food.area}</td>
+      `;
+      tbody.appendChild(tr);
+      });
+    }
+
+    // Run immediately (script is at bottom, so DOM exists)
+    getFoods()
+      .then(foods => {
+        console.log("Foods:", foods);
+        renderFoods(foods);
+      })
+      .catch(err => {
+        console.error("Error:", err);
+      });
     </script>
 </body>
 </html>
