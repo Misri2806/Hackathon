@@ -286,3 +286,31 @@ footer {
     background: var(--color2);
     color: var(--color3);
 }
+/* Password toggle */
+.password-container {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+}
+
+.password-container input[type="password"],
+.password-container input[type="text"] {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--color5);
+    font-size: 20px;
+    user-select: none;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: var(--color4);
+}

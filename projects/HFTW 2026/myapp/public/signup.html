@@ -28,7 +28,10 @@
                     <input type="text" name="username" required>
 
                     <label>Password:</label>
-                    <input type="password" name="password" required>
+                    <div class="password-container">
+                        <input type="password" name="password" class="password-input" required>
+                        <span class="toggle-password" onclick="togglePassword(this)">👁️</span>
+                    </div>
 
                     <button class="button" type="submit"><span>Sign Up</span></button>
                 </form>
@@ -40,5 +43,18 @@
     <footer>
         Foodwill - Connecting Communities Through Food
     </footer>
+
+    <script>
+    function togglePassword(icon) {
+        const input = icon.previousElementSibling;
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.textContent = '🙈';
+        } else {
+            input.type = 'password';
+            icon.textContent = '👁️';
+        }
+    }
+    </script>
 </body>
 </html>
