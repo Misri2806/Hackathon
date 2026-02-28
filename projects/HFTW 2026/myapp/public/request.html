@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request – Foodwill</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="foods.js"></script>
+    <!-- inline script handles fetching and rendering foods -->
 </head>
 <body>
     <header>
@@ -25,49 +25,25 @@
     <main>
         <section class="hero">
             <div class="hero-content">
-                <tbody id="foods-list"></tbody>
-                
-                <h2>Request Food</h2>
-                <p>If you need food assistance, please fill out the form below to find available donations in your area.</p>
-                <form style="margin-top:20px;">
-                    <label>Item you want:</label>
-                    <input id="item" type="text" required>
-
-                    <label>Location:</label>
-                    <select id="location" required>
-                        <option value="Chicago">Chicago Area</option>
-                        <option value="Houston">Houston Area</option>
-                    </select>
-                    
-                    <button class="button" type="submit"><span>Find Match</span></button>
-                </form>
-                <h3 id="result"></h3>
+                <h2>Available Foods</h2>
+                <table id="foods-table">
+                    <thead>
+                        <tr><th>Name</th><th>Quantity</th><th>Location</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="foods-list">
+                        <!-- dynamic rows inserted here -->
+                    </tbody>
+                </table>
             </div>
         </section>
-        <div>
-            <ul id="foods-list"></ul>
-        </div>
-        
+
     </main>
     <footer>
         Foodwill - Connecting Communities Through Food
     </footer>
 
     <script>
-    document.querySelector('form').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const item = document.getElementById("item").value;
-        const location = document.getElementById("location").value;
 
-        const response = await fetch("http://localhost:8080/request", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ item, location })
-        });
-
-        const result = await response.text();
-        document.getElementById("result").innerHTML = result;
-    });
     async function getFoods() {
       const response = await fetch("http://192.168.178.73:7000/foods");
 
@@ -80,16 +56,36 @@
 
     function renderFoods(foods) {
       const tbody = document.getElementById("foods-list");
-
-    foods.forEach(food => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${food.name}</td>
-        <td>${food.quantity}</td>
-        <td>${food.area}</td>
-      `;
-      tbody.appendChild(tr);
+      tbody.innerHTML = '';
+      foods.forEach((food, index) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${food.name}</td>
+          <td>${food.quantity}</td>
+          <td>${food.area}</td>
+          <td><button class="claim-btn" data-index="${index}">Claim</button></td>
+        `;
+        tbody.appendChild(tr);
       });
+
+      // attach handlers
+      tbody.querySelectorAll('.claim-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const idx = this.getAttribute('data-index');
+          claimFood(idx);
+        });
+      });
+    }
+
+    // remove claimed item locally and optionally send to server
+    function claimFood(index) {
+      // remove from DOM row
+      const tbody = document.getElementById('foods-list');
+      const row = tbody.querySelector(`button[data-index="${index}"]`).closest('tr');
+      if (row) row.remove();
+      // TODO: send claim request to backend if desired
+      // example:
+      // fetch('http://192.168.178.73:7000/claim', { method: 'POST', body: JSON.stringify({ index }) });
     }
 
     // Run immediately (script is at bottom, so DOM exists)
